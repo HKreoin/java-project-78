@@ -28,12 +28,17 @@ public class StringSchema extends Schema{
         if (minLength > 0 && str.length() < minLength) {
             return false;
         }
-        return contains.isEmpty() || allContentInclude(str);
+        return allContentInclude(str);
     }
 
     public boolean allContentInclude(String str) {
+        if (contains.isEmpty()) {
+            return true;
+        }
         for (var substring : contains) {
-            if (!str.contains(substring)) return false;
+            if (!str.contains(substring)) {
+                return false;
+            }
         }
         return true;
     }
