@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-public class StringSchema extends Schema{
+public class StringSchema extends Schema {
     private List<String> contains = new ArrayList<>();
     private int minLength;
     public StringSchema minLength(int min) {
-        if (min > 0) minLength = min;
+        if (min > 0) {
+            minLength = min;
+        }
         return this;
     }
     public StringSchema contains(String subStr) {
