@@ -1,5 +1,8 @@
 package hexlet.code;
 
+import hexlet.code.checks.ContainsCheck;
+import hexlet.code.checks.MinLengthCheck;
+import hexlet.code.checks.RequaredCheck;
 import hexlet.code.schemas.StringSchema;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,25 +22,28 @@ public class StringSchemaTest {
 
     @Test
     public void testRequired() {
-        assertFalse(schema.getRequired());
+        assertTrue(schema.getChecks().isEmpty());
         schema.required();
-        assertTrue(schema.getRequired());
+        assertEquals(schema.getChecks().getFirst().getClass(), RequaredCheck.class);
     }
 
     @Test
     public void testMinLength() {
-        assertEquals(schema.getMinLength(), 0);
+        assertTrue(schema.getChecks().isEmpty());
         schema.minLength(5);
-        assertEquals(schema.getMinLength(), 5);
+        MinLengthCheck check = (MinLengthCheck) schema.getChecks().getFirst();
+        assertEquals(check.getMinLength(), 5);
     }
 
     @Test
     public void contains() {
-        assertTrue(schema.getContains().isEmpty());
+        assertTrue(schema.getChecks().isEmpty());
         schema.contains("hexlet");
-        assertEquals(schema.getContains().get(0), "hexlet");
+        var expected1 = (ContainsCheck) schema.getChecks().getFirst();
+        assertEquals(expected1.getSubStr(), "hexlet");
         schema.contains("what");
-        assertEquals(schema.getContains().get(1), "what");
+        var expected2 = (ContainsCheck) schema.getChecks().get(1);
+        assertEquals(expected2.getSubStr(), "what");
     }
 
     @Test

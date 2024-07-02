@@ -1,47 +1,25 @@
 package hexlet.code.schemas;
 
-import lombok.Getter;
+import hexlet.code.checks.ContainsCheck;
+import hexlet.code.checks.MinLengthCheck;
 
-import java.util.ArrayList;
-import java.util.List;
+public class StringSchema extends BaseSchema<String> {
+    private MinLengthCheck minLengthCheck;
 
-@Getter
-public class StringSchema extends Schema {
-    private List<String> contains = new ArrayList<>();
-    private int minLength;
     public StringSchema minLength(int min) {
         if (min > 0) {
-            minLength = min;
+            if (minLengthCheck == null) {
+                minLengthCheck = new MinLengthCheck(min);
+            } else {
+                minLengthCheck.setMinLength(min);
+            }
+            checks.add(minLengthCheck);
         }
         return this;
     }
     public StringSchema contains(String subStr) {
-        contains.add(subStr);
+        checks.add(new ContainsCheck(subStr));
         return this;
     }
-    @Override
-    public boolean isValid(String str) {
-        if (getRequired() && str == null) {
-            return false;
-        }
-        if (getRequired() && str.isEmpty()) {
-            return false;
-        }
-        if (minLength > 0 && str.length() < minLength) {
-            return false;
-        }
-        return allContentInclude(str);
-    }
 
-    public boolean allContentInclude(String str) {
-        if (contains.isEmpty()) {
-            return true;
-        }
-        for (var substring : contains) {
-            if (!str.contains(substring)) {
-                return false;
-            }
-        }
-        return true;
-    }
 }
