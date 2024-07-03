@@ -7,17 +7,23 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ValidatorTest {
+    private Validator validator = new Validator();
+
     @Test
     public void testString() {
-        var validator = new Validator();
         var expected = StringSchema.class;
         assertEquals(validator.string().getClass(), expected);
     }
 
     @Test
     public void testNumber() {
-        var validator = new Validator();
         var expected = NumberSchema.class;
         assertEquals(validator.number().getClass(), expected);
+    }
+
+    @Test
+    public void testMap() {
+        var expected = MapSchema.class;
+        assertEquals(validator.map().getClass(), expected);
     }
 }
