@@ -1,20 +1,22 @@
 package hexlet.code;
 
-import hexlet.code.checks.MinLengthCheck;
-import hexlet.code.checks.RequaredCheck;
-import hexlet.code.schemas.StringSchema;
+import hexlet.code.checks.PositiveCheck;
+import hexlet.code.checks.RangeCheck;
+import hexlet.code.checks.RequaredIntCheck;
+import hexlet.code.schemas.NumberSchema;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class NumberSchemaTest {
-    private StringSchema schema;
-    private Validator validator;
+    private NumberSchema schema;
 
     @BeforeEach
     public void beforeEach() {
-        validator = new Validator();
+        Validator validator = new Validator();
         schema = validator.number();
     }
 
@@ -22,16 +24,20 @@ public class NumberSchemaTest {
     public void testRequired() {
         assertTrue(schema.getChecks().isEmpty());
         schema.required();
-        assertEquals(schema.getChecks().getFirst().getClass(), RequaredCheck.class);
-
+        var check = (RequaredIntCheck) schema.getChecks().getFirst();
+        assertEquals(check.getClass(), RequaredIntCheck.class);
+        assertFalse(check.validate(null));
+        assertTrue(check.validate(34));
+        assertTrue(check.validate(-4));
+        assertTrue(check.validate(0));
     }
 
     @Test
     public void testPositive() {
         assertTrue(schema.getChecks().isEmpty());
         schema.positive();
-        PositiveCheck check = (PositiveCheck) schema.getChecks().getFirst();
-        assertEquals(check, PositiveCheck.class);
+        var check = (PositiveCheck) schema.getChecks().getFirst();
+        assertEquals(check.getClass(), PositiveCheck.class);
         assertTrue(check.validate(null));
         assertTrue(check.validate(34));
         assertFalse(check.validate(-4));
@@ -42,7 +48,7 @@ public class NumberSchemaTest {
     public void testRange() {
         assertTrue(schema.getChecks().isEmpty());
         schema.range(5, 10);
-        RangeCheck check = (RangeCheck) schema.getChecks().getFirst();
+        var check = (RangeCheck) schema.getChecks().getFirst();
         assertTrue(check.validate(7));
         assertTrue(check.validate(10));
         assertFalse(check.validate(4));

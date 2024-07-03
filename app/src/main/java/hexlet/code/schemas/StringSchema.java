@@ -2,6 +2,7 @@ package hexlet.code.schemas;
 
 import hexlet.code.checks.ContainsCheck;
 import hexlet.code.checks.MinLengthCheck;
+import hexlet.code.checks.RequaredCheck;
 
 public class StringSchema extends BaseSchema<String> {
     private MinLengthCheck minLengthCheck;
@@ -17,6 +18,12 @@ public class StringSchema extends BaseSchema<String> {
         }
         return this;
     }
+
+    public StringSchema required() {
+        checks.add(new RequaredCheck());
+        return this;
+    }
+
     public StringSchema contains(String subStr) {
         checks.add(new ContainsCheck(subStr));
         return this;

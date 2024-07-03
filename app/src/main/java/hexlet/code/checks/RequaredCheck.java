@@ -9,4 +9,5 @@ public class RequaredCheck implements Check<String> {
             return !content.isEmpty();
         }
     }
+
 }
