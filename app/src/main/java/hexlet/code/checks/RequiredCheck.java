@@ -1,6 +1,6 @@
 package hexlet.code.checks;
 
-public class RequaredCheck implements Check<String> {
+public class RequiredCheck implements Check<String> {
     @Override
     public boolean validate(String content) {
         if (content == null) {
