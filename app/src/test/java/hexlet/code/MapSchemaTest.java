@@ -1,13 +1,15 @@
 package hexlet.code;
 
-import hexlet.code.checks.RequaredIntCheck;
+import hexlet.code.checks.RequiredMapCheck;
+import hexlet.code.checks.SizeOfCheck;
 import hexlet.code.schemas.MapSchema;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MapSchemaTest {
@@ -23,8 +25,8 @@ public class MapSchemaTest {
     public void testRequired() {
         assertTrue(schema.getChecks().isEmpty());
         schema.required();
-        var check = (RequaredMapCheck) schema.getChecks().getFirst();
-        assertEquals(check.getClass(), RequaredMapCheck.class);
+        var check = (RequiredMapCheck) schema.getChecks().getFirst();
+        assertEquals(check.getClass(), RequiredMapCheck.class);
         assertFalse(check.validate(null));
         var data = new HashMap<>();
         assertTrue(check.validate(data));
@@ -36,10 +38,10 @@ public class MapSchemaTest {
     public void testSizeOf() {
         assertTrue(schema.getChecks().isEmpty());
         schema.sizeOf(2);
-        var check = (SizeOfMapCheck) schema.getChecks().getFirst();
+        var check = (SizeOfCheck) schema.getChecks().getFirst();
         assertEquals(check.getClass(), SizeOfCheck.class);
         assertFalse(check.validate(null));
-        var data = new HashMap<>();
+        var data = new HashMap<String, String>();
         assertFalse(check.validate(data));
         data.put("key1", "value1");
         assertFalse(check.validate(data));
@@ -61,7 +63,7 @@ public class MapSchemaTest {
         data.put("key1", "value1");
         assertTrue(schema.isValid(data)); // true
 
-        schema.sizeof(2);
+        schema.sizeOf(2);
 
         assertFalse(schema.isValid(data));  // false
         data.put("key2", "value2");

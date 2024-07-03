@@ -2,7 +2,7 @@ package hexlet.code;
 
 import hexlet.code.checks.ContainsCheck;
 import hexlet.code.checks.MinLengthCheck;
-import hexlet.code.checks.RequaredCheck;
+import hexlet.code.checks.RequiredCheck;
 import hexlet.code.schemas.StringSchema;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ public class StringSchemaTest {
     public void testRequired() {
         assertTrue(schema.getChecks().isEmpty());
         schema.required();
-        assertEquals(schema.getChecks().getFirst().getClass(), RequaredCheck.class);
+        assertEquals(schema.getChecks().getFirst().getClass(), RequiredCheck.class);
     }
 
     @Test
