@@ -13,10 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class NumberSchemaTest {
     private NumberSchema schema;
+    private final Validator validator = new Validator();
 
     @BeforeEach
     public void beforeEach() {
-        Validator validator = new Validator();
         schema = validator.number();
     }
 
