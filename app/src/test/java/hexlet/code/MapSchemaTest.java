@@ -39,9 +39,9 @@ public class MapSchemaTest {
     }
 
     @Test
-    public void testSizeOf() {
+    public void testSizeof() {
 
-        schema.sizeOf(2);
+        schema.sizeof(2);
 
         var check = (SizeOfCheck) schema.getChecks().getFirst();
         assertEquals(check.getClass(), SizeOfCheck.class);
@@ -69,7 +69,7 @@ public class MapSchemaTest {
         data.put("key1", "value1");
         assertTrue(schema.isValid(data)); // true
 
-        schema.sizeOf(2);
+        schema.sizeof(2);
 
         assertFalse(schema.isValid(data));  // false
         data.put("key2", "value2");
