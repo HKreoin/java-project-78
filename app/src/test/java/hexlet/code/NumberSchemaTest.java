@@ -2,7 +2,7 @@ package hexlet.code;
 
 import hexlet.code.checks.PositiveCheck;
 import hexlet.code.checks.RangeCheck;
-import hexlet.code.checks.RequiredIntCheck;
+import hexlet.code.checks.RequiredCheck;
 import hexlet.code.schemas.NumberSchema;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,8 +23,8 @@ public class NumberSchemaTest {
     @Test
     public void testRequired() {
         schema.required();
-        var check = (RequiredIntCheck) schema.getChecks().getFirst();
-        assertEquals(check.getClass(), RequiredIntCheck.class);
+        var check = (RequiredCheck) schema.getChecks().getFirst();
+        assertEquals(check.getClass(), RequiredCheck.class);
         assertFalse(check.validate(null));
         assertTrue(check.validate(34));
         assertTrue(check.validate(-4));

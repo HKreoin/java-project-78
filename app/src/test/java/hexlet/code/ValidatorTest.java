@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ValidatorTest {
-    private Validator validator = new Validator();
+    private final Validator validator = new Validator();
 
     @Test
     public void testString() {

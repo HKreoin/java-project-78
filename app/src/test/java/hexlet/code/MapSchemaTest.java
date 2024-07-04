@@ -1,6 +1,6 @@
 package hexlet.code;
 
-import hexlet.code.checks.RequiredMapCheck;
+import hexlet.code.checks.RequiredCheck;
 import hexlet.code.checks.SizeOfCheck;
 import hexlet.code.schemas.BaseSchema;
 import hexlet.code.schemas.MapSchema;
@@ -28,8 +28,8 @@ public class MapSchemaTest {
 
         schema.required();
 
-        var check = (RequiredMapCheck) schema.getChecks().getFirst();
-        assertEquals(check.getClass(), RequiredMapCheck.class);
+        var check = (RequiredCheck) schema.getChecks().getFirst();
+        assertEquals(check.getClass(), RequiredCheck.class);
         assertFalse(check.validate(null));
 
         var data = new HashMap<>();
@@ -107,6 +107,6 @@ public class MapSchemaTest {
         Map<String, String> human3 = new HashMap<>();
         human3.put("firstName", "Anna");
         human3.put("lastName", "B");
-        schema.isValid(human3); // false
+        assertFalse(schema.isValid(human3)); // false
     }
 }
