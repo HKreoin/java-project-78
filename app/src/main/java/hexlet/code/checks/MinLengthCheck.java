@@ -8,8 +8,8 @@ import lombok.Setter;
 public final class MinLengthCheck implements Check<String> {
     private int minLength;
 
-    public MinLengthCheck(int minLength) {
-        this.minLength = minLength;
+    public MinLengthCheck(int min) {
+        this.minLength = min;
     }
 
     @Override

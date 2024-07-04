@@ -7,8 +7,8 @@ import java.util.Map;
 public final class ShapeCheck<T> implements Check<Map<String, T>> {
 
     private final Map<String, BaseSchema<T>> schemas;
-    public ShapeCheck(Map<String, BaseSchema<T>> schemas) {
-        this.schemas = schemas;
+    public ShapeCheck(Map<String, BaseSchema<T>> map) {
+        this.schemas = map;
     }
 
     @Override
