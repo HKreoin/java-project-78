@@ -19,13 +19,13 @@ public class StringSchema extends BaseSchema<String> {
         return this;
     }
 
-    public StringSchema required() {
-        checks.add(new RequiredCheck());
+    public StringSchema contains(String subStr) {
+        checks.add(new ContainsCheck(subStr));
         return this;
     }
 
-    public StringSchema contains(String subStr) {
-        checks.add(new ContainsCheck(subStr));
+    public StringSchema required() {
+        checks.add(new RequiredCheck<>());
         return this;
     }
 

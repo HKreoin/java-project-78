@@ -1,6 +1,7 @@
 package hexlet.code.schemas;
 
 import hexlet.code.checks.Check;
+import hexlet.code.checks.RequiredCheck;
 import lombok.Getter;
 
 import java.util.ArrayList;
