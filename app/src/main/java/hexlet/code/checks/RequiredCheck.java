@@ -1,13 +1,9 @@
 package hexlet.code.checks;
 
-public class RequiredCheck implements Check<String> {
+public class RequiredCheck<T> implements Check<T> {
     @Override
-    public boolean validate(String content) {
-        if (content == null) {
-            return false;
-        } else {
-            return !content.isEmpty();
-        }
+    public boolean validate(T content) {
+        return content != null;
     }
 
 }
