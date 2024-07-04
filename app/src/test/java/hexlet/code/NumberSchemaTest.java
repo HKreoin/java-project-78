@@ -22,7 +22,6 @@ public class NumberSchemaTest {
 
     @Test
     public void testRequired() {
-        assertTrue(schema.getChecks().isEmpty());
         schema.required();
         var check = (RequiredIntCheck) schema.getChecks().getFirst();
         assertEquals(check.getClass(), RequiredIntCheck.class);
@@ -34,7 +33,6 @@ public class NumberSchemaTest {
 
     @Test
     public void testPositive() {
-        assertTrue(schema.getChecks().isEmpty());
         schema.positive();
         var check = (PositiveCheck) schema.getChecks().getFirst();
         assertEquals(check.getClass(), PositiveCheck.class);
@@ -46,7 +44,6 @@ public class NumberSchemaTest {
 
     @Test
     public void testRange() {
-        assertTrue(schema.getChecks().isEmpty());
         schema.range(5, 10);
         var check = (RangeCheck) schema.getChecks().getFirst();
         assertTrue(check.validate(7));

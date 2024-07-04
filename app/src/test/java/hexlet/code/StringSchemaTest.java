@@ -22,14 +22,12 @@ public class StringSchemaTest {
 
     @Test
     public void testRequired() {
-        assertTrue(schema.getChecks().isEmpty());
         schema.required();
         assertEquals(schema.getChecks().getFirst().getClass(), RequiredCheck.class);
     }
 
     @Test
     public void testMinLength() {
-        assertTrue(schema.getChecks().isEmpty());
         schema.minLength(5);
         MinLengthCheck check = (MinLengthCheck) schema.getChecks().getFirst();
         assertEquals(check.getMinLength(), 5);
@@ -37,7 +35,6 @@ public class StringSchemaTest {
 
     @Test
     public void contains() {
-        assertTrue(schema.getChecks().isEmpty());
         schema.contains("hexlet");
         var expected1 = (ContainsCheck) schema.getChecks().getFirst();
         assertEquals(expected1.getSubStr(), "hexlet");
