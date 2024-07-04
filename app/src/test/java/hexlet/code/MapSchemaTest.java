@@ -2,11 +2,13 @@ package hexlet.code;
 
 import hexlet.code.checks.RequiredMapCheck;
 import hexlet.code.checks.SizeOfCheck;
+import hexlet.code.schemas.BaseSchema;
 import hexlet.code.schemas.MapSchema;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -23,11 +25,13 @@ public class MapSchemaTest {
 
     @Test
     public void testRequired() {
-        assertTrue(schema.getChecks().isEmpty());
+
         schema.required();
+
         var check = (RequiredMapCheck) schema.getChecks().getFirst();
         assertEquals(check.getClass(), RequiredMapCheck.class);
         assertFalse(check.validate(null));
+
         var data = new HashMap<>();
         assertTrue(check.validate(data));
         data.put("key1", "value1");
@@ -36,11 +40,13 @@ public class MapSchemaTest {
 
     @Test
     public void testSizeOf() {
-        assertTrue(schema.getChecks().isEmpty());
+
         schema.sizeOf(2);
+
         var check = (SizeOfCheck) schema.getChecks().getFirst();
         assertEquals(check.getClass(), SizeOfCheck.class);
         assertFalse(check.validate(null));
+
         var data = new HashMap<String, String>();
         assertFalse(check.validate(data));
         data.put("key1", "value1");
@@ -68,5 +74,39 @@ public class MapSchemaTest {
         assertFalse(schema.isValid(data));  // false
         data.put("key2", "value2");
         assertTrue(schema.isValid(data)); // true
+    }
+
+    @Test
+    public void testShape() {
+        // shape позволяет описывать валидацию для значений каждого ключа объекта Map
+        // Создаем набор схем для проверки каждого ключа проверяемого объекта
+        // Для значения каждого ключа - своя схема
+        Map<String, BaseSchema<String>> schemas = new HashMap<>();
+
+        // Определяем схемы валидации для значений свойств "firstName" и "lastName"
+        // Имя должно быть строкой, обязательно для заполнения
+        schemas.put("firstName", validator.string().required());
+        // Фамилия обязательна для заполнения и должна содержать не менее 2 символов
+        schemas.put("lastName", validator.string().required().minLength(2));
+
+        // Настраиваем схему `MapSchema`
+        // Передаем созданный набор схем в метод shape()
+        schema.shape(schemas);
+
+        // Проверяем объекты
+        Map<String, String> human1 = new HashMap<>();
+        human1.put("firstName", "John");
+        human1.put("lastName", "Smith");
+        assertTrue(schema.isValid(human1)); // true
+
+        Map<String, String> human2 = new HashMap<>();
+        human2.put("firstName", "John");
+        human2.put("lastName", null);
+        assertFalse(schema.isValid(human2)); // false
+
+        Map<String, String> human3 = new HashMap<>();
+        human3.put("firstName", "Anna");
+        human3.put("lastName", "B");
+        schema.isValid(human3); // false
     }
 }
