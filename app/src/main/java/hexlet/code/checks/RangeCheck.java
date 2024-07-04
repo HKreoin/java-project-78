@@ -1,6 +1,6 @@
 package hexlet.code.checks;
 
-public class RangeCheck implements Check<Integer> {
+public final class RangeCheck implements Check<Integer> {
     private final int from;
     private final int to;
 

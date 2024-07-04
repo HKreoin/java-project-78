@@ -3,7 +3,7 @@ package hexlet.code.checks;
 import lombok.Getter;
 
 @Getter
-public class ContainsCheck implements Check<String> {
+public final class ContainsCheck implements Check<String> {
     private final String subStr;
     public ContainsCheck(String subStr) {
         this.subStr = subStr;

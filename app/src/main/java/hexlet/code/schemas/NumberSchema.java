@@ -4,7 +4,7 @@ import hexlet.code.checks.PositiveCheck;
 import hexlet.code.checks.RangeCheck;
 import hexlet.code.checks.RequiredCheck;
 
-public class NumberSchema extends BaseSchema<Integer> {
+public final class NumberSchema extends BaseSchema<Integer> {
     public NumberSchema positive() {
         checks.add(new PositiveCheck());
         return this;

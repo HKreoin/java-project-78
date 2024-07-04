@@ -6,7 +6,7 @@ import hexlet.code.checks.SizeofCheck;
 
 import java.util.Map;
 
-public class MapSchema<T> extends BaseSchema<Map<String, T>> {
+public final class MapSchema<T> extends BaseSchema<Map<String, T>> {
 
     public MapSchema<T> sizeof(int size) {
         checks.add(new SizeofCheck<>(size));

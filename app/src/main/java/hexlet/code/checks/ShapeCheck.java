@@ -4,7 +4,7 @@ import hexlet.code.schemas.BaseSchema;
 
 import java.util.Map;
 
-public class ShapeCheck<T> implements Check<Map<String, T>> {
+public final class ShapeCheck<T> implements Check<Map<String, T>> {
 
     private final Map<String, BaseSchema<T>> schemas;
     public ShapeCheck(Map<String, BaseSchema<T>> schemas) {

@@ -2,7 +2,7 @@ package hexlet.code.checks;
 
 import java.util.Map;
 
-public class SizeofCheck<T> implements Check<Map<String, T>> {
+public final class SizeofCheck<T> implements Check<Map<String, T>> {
     private final int size;
 
     public SizeofCheck(int size) {

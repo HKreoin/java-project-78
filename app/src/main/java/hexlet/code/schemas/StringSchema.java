@@ -4,7 +4,7 @@ import hexlet.code.checks.ContainsCheck;
 import hexlet.code.checks.MinLengthCheck;
 import hexlet.code.checks.RequiredCheck;
 
-public class StringSchema extends BaseSchema<String> {
+public final class StringSchema extends BaseSchema<String> {
     private MinLengthCheck minLengthCheck;
 
     public StringSchema minLength(int min) {

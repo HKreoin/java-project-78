@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MinLengthCheck implements Check<String> {
+public final class MinLengthCheck implements Check<String> {
     private int minLength;
 
     public MinLengthCheck(int minLength) {
