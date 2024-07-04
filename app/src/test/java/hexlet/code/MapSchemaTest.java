@@ -1,7 +1,7 @@
 package hexlet.code;
 
 import hexlet.code.checks.RequiredCheck;
-import hexlet.code.checks.SizeOfCheck;
+import hexlet.code.checks.SizeofCheck;
 import hexlet.code.schemas.BaseSchema;
 import hexlet.code.schemas.MapSchema;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,8 +43,8 @@ public class MapSchemaTest {
 
         schema.sizeof(2);
 
-        var check = (SizeOfCheck) schema.getChecks().getFirst();
-        assertEquals(check.getClass(), SizeOfCheck.class);
+        var check = (SizeofCheck) schema.getChecks().getFirst();
+        assertEquals(check.getClass(), SizeofCheck.class);
         assertFalse(check.validate(null));
 
         var data = new HashMap<String, String>();

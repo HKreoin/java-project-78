@@ -2,7 +2,7 @@ package hexlet.code.schemas;
 
 import hexlet.code.checks.RequiredCheck;
 import hexlet.code.checks.ShapeCheck;
-import hexlet.code.checks.SizeOfCheck;
+import hexlet.code.checks.SizeofCheck;
 
 import java.util.Map;
 
