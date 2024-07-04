@@ -13,7 +13,7 @@ public abstract class BaseSchema<T> {
         this.checks = new ArrayList<>();
     }
 
-    public boolean isValid(T content) {
+    public final boolean isValid(T content) {
         for (Check<T> check : checks) {
             if (!check.validate(content)) {
                 return false;
