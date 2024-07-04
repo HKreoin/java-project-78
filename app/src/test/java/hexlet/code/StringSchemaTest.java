@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class StringSchemaTest {
+public final class StringSchemaTest {
     private StringSchema schema;
     private final Validator validator  = new Validator();
 
